@@ -16,7 +16,7 @@ self.addEventListener('push', function(event) {
     silent:true
   });
   event.waitUntil(
-    fetch('https://pushsvsample.herokuapp.com/test' {
+    fetch('https://pushsvsample.herokuapp.com/test',{
       mode: 'cors',
       credentials: 'include'
     }).then(function(response) {
