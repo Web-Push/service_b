@@ -16,17 +16,31 @@ self.addEventListener('push', function(event) {
     silent:true
   });
   event.waitUntil(
-    fetch('https://web-push.github.io/WebPushControl/users.json').then(function(response){
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ', response.status);
-      } else {
-        response.text().then(function(textdata) {
-          console.log('text:', textdata);
-          var jsondata = JSON.parse(textdata);
-          checkLogin(jsondata);
-        });
-      }
-    })
+    var url = 'https://pushsvsample.herokuapp.com/test';
+    fetch(url, {
+      mode: 'cors',
+      credentials: 'include'
+    }).then(function(response) {
+        if (response.status !== 200) {
+          console.log('err:' + response.status);
+        }
+        else {
+          response.text().then(function(textdata){
+          console.log('test response:' + textdata);
+        }
+      });
+    });
+//    fetch('https://web-push.github.io/WebPushControl/users.json').then(function(response){
+//      if (response.status !== 200) {
+//        console.log('Looks like there was a problem. Status Code: ', response.status);
+//      } else {
+//        response.text().then(function(textdata) {
+//          console.log('text:', textdata);
+//          var jsondata = JSON.parse(textdata);
+//          checkLogin(jsondata);
+//        });
+//      }
+//    })
   );
 });
 
